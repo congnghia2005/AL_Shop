@@ -1,32 +1,27 @@
 # --- Database & Docker ---
-# Né các file dữ liệu SQL Server nếu có
-*.mdf
-*.ldf
-*.bak
 mssql-data/
 sql-data/
+*.mdf
+*.ldf
+
+# --- Angular (Cập nhật từ nội dung bạn gửi) ---
+**/node_modules/
+**/dist/
+**/tmp/
+**/out-tsc/
+**/.angular/cache/
+*.log
 
 # --- Java / Spring Boot ---
 **/target/
 **/.mvn/
 *.jar
-*.class
-
-# --- Angular / Node ---
-**/node_modules/
-**/dist/
-.angular/
-**/npm-debug.log*
 
 # --- Python ---
 **/__pycache__/
 **/.venv/
-*.pyc
 
-# --- IDE & OS ---
+# --- IDEs (Chặn triệt để .vscode của cả dự án) ---
 .vscode/
 .idea/
 .DS_Store
-Thumbs.db
-
-.vscode/
