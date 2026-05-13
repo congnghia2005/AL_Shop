@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: AL-sql-server
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Admin#123456
+    ports:
+      - "1433:1433"
+    
+  ai-service:
+    build: ./AI-service-python
+    container_name: AL-ai-python
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db  
+
+  backend:
+    build: ./backend-spring
+    container_name: AL-spring-boot
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:sqlserver://db:1433;databaseName=AI_E_COMMERCE;encrypt=true;trustServerCertificate=true
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=Admin#123456
+    depends_on:
+      - db         
+      - ai-service 
+
+  frontend:
+    build: ./frontend-angular
+    container_name: AL-angular-web
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
