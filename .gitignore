@@ -11,6 +11,12 @@ sql-data/
 **/out-tsc/
 **/.angular/cache/
 *.log
+# =========================
+# Angular
+# =========================
+frontend-angular/AL-shop-project/node_modules/
+frontend-angular/AL-shop-project/dist/
+frontend-angular/AL-shop-project/.angular/
 
 # --- Java / Spring Boot ---
 **/target/
